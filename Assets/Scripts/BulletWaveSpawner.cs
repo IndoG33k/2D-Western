@@ -6,8 +6,14 @@ public class BulletWaveSpawner : MonoBehaviour
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform[] spawnPoints;
 
-    public void SpawnWave(int count)
+    public int SpawnWave(int count)
     {
+
+        if (bulletPrefab == null || spawnPoints == null || spawnPoints.Length == 0)
+        {
+            return 0;
+        }
+
         var indices = new List<int>(spawnPoints.Length);
         
         for (int i = 0; i < spawnPoints.Length; i++)
@@ -29,5 +35,7 @@ public class BulletWaveSpawner : MonoBehaviour
             GameObject instance = Instantiate(bulletPrefab, point.position, point.rotation);
             instance.SetActive(true);
         }
+
+        return spawnCount;
     }
 }
