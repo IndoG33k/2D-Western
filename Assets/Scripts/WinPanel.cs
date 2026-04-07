@@ -1,20 +1,20 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-#if UNITY_EDITOR
-using UnityEditor;
-#endif
 
-public class GameOver : MonoBehaviour
+public class WinPanel : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private Health playerHealth;
     [SerializeField] private GameObject panelRoot;
     [SerializeField] private CanvasGroup canvasGroup;
 
+    [Header("Scene names")]
+    [SerializeField] private string fightSceneName = "SampleScene";
+    [SerializeField] private string mainMenuSceneName = "MainMenu";
+
     [Header("Behavior")]
     [SerializeField] private bool hideOnStart = true;
-    [SerializeField] private bool pauseTimeOnGameOver = true;
-    [SerializeField] private bool showCursorOnGameOver = true;
+    [SerializeField] private bool pauseTimeOnWin = true;
+    [SerializeField] private bool showCursorOnWin = true;
 
     private bool _shown;
 
@@ -27,22 +27,10 @@ public class GameOver : MonoBehaviour
             canvasGroup = panelRoot.GetComponent<CanvasGroup>();
 
         if (hideOnStart)
-            HideGameOver();
+            HideWin();
     }
 
-    private void OnEnable()
-    {
-        if (playerHealth != null)
-            playerHealth.OnDeath.AddListener(ShowGameOver);
-    }
-
-    private void OnDisable()
-    {
-        if (playerHealth != null)
-            playerHealth.OnDeath.RemoveListener(ShowGameOver);
-    }
-
-    public void ShowGameOver()
+    public void ShowWin()
     {
         if (_shown)
             return;
@@ -58,17 +46,17 @@ public class GameOver : MonoBehaviour
             canvasGroup.blocksRaycasts = true;
         }
 
-        if (pauseTimeOnGameOver)
+        if (pauseTimeOnWin)
             Time.timeScale = 0f;
 
-        if (showCursorOnGameOver)
+        if (showCursorOnWin)
         {
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
         }
     }
 
-    public void HideGameOver()
+    public void HideWin()
     {
         _shown = false;
 
@@ -83,15 +71,18 @@ public class GameOver : MonoBehaviour
         }
     }
 
-    public void RestartGame()
+    public void RestartRun()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        RunProgression.Instance?.ResetRun();
+        SceneManager.LoadScene(fightSceneName);
     }
 
-    public void QuitGame()
+    public void ReturnToMainMenu()
     {
-        SceneManager.LoadScene("MainMenu");
-        
+        Time.timeScale = 1f;
+        RunProgression.Instance?.ResetRun();
+        SceneManager.LoadScene(mainMenuSceneName);
     }
 }
+

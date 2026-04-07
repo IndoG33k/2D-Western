@@ -50,6 +50,22 @@ public class AICombatController : MonoBehaviour
     private int _bulletDamage;
     private float _lastMeaningfulActionTime;
 
+    public AITier Tier => tier;
+
+    public void SetTier(AITier newTier, bool resetAmmo)
+    {
+        tier = newTier;
+        ApplyTierStats();
+
+        if (resetAmmo)
+            _ammo = Mathf.Max(0, magazineSize);
+
+        _isReloading = false;
+        _lastPressureTime = Time.time;
+        _lastPlayerShotTime = -999f;
+        _lastMeaningfulActionTime = Time.time;
+    }
+
     private void Awake()
     {
         if (health == null)
@@ -94,7 +110,7 @@ public class AICombatController : MonoBehaviour
         switch (tier)
         {
             case AITier.Level1:
-                maxHp = 3;
+                maxHp = 10;
                 minBurstShots = 1;
                 maxBurstShots = 1;
                 reloadSecondsPerBullet = 1f;
@@ -114,7 +130,7 @@ public class AICombatController : MonoBehaviour
                 aimSpreadDegrees = 35f;
                 break;
             case AITier.Level2:
-                maxHp = 5;
+                maxHp = 12;
                 minBurstShots = 1;
                 maxBurstShots = 2;
                 reloadSecondsPerBullet = 0.8f;
@@ -134,7 +150,7 @@ public class AICombatController : MonoBehaviour
                 aimSpreadDegrees = 25f;
                 break;
             case AITier.Level3:
-                maxHp = 8;
+                maxHp = 15;
                 minBurstShots = 1;
                 maxBurstShots = 1;
                 reloadSecondsPerBullet = 0.5f;
@@ -150,11 +166,11 @@ public class AICombatController : MonoBehaviour
                 pressureIntervalSeconds = 2.25f;
                 pressureMinShots = 1;
                 pressureMaxShots = 2;
-                _bulletDamage = 2;
+                _bulletDamage = 1;
                 aimSpreadDegrees = 15f;
                 break;
             case AITier.Level4:
-                maxHp = 15;
+                maxHp = 20;
                 minBurstShots = 1;
                 maxBurstShots = 1;
                 reloadSecondsPerBullet = 0.2f;
@@ -170,7 +186,7 @@ public class AICombatController : MonoBehaviour
                 pressureIntervalSeconds = 2.75f;
                 pressureMinShots = 1;
                 pressureMaxShots = 3;
-                _bulletDamage = 3;
+                _bulletDamage = 1;
                 aimSpreadDegrees = 6f;
                 break;
             default:

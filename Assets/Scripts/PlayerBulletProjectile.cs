@@ -13,7 +13,7 @@ public class PlayerBulletProjectile : MonoBehaviour
     [SerializeField] private bool destroyWhenHitAnotherBullet = true;
 
     [Header("Hit targets")]
-    [SerializeField] private int hitDamage = 1;
+    [SerializeField] private int hitDamage = 5;
     [SerializeField] private LayerMask damageableLayers;
 
     private Rigidbody2D _rb;
