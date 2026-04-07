@@ -16,6 +16,7 @@ public class ReticleBehaviour : MonoBehaviour
     [SerializeField] private Canvas canvas;
     [SerializeField] private GameObject reticleImage;
     [SerializeField] private ReticleStartMode startMode = ReticleStartMode.WaitForExternalActivate;
+    [SerializeField] private PlayerWeaponController weapon;
     [SerializeField] private float reticleDelay = 5f;
 
     private bool followMouse;
@@ -65,6 +66,17 @@ public class ReticleBehaviour : MonoBehaviour
 
     private void LateUpdate()
     {
+        if (weapon != null)
+        {
+            bool show = weapon.IsAiming && !weapon.IsReloading;
+            followMouse = show;
+
+            if (reticleImage != null)
+            {
+                reticleImage.SetActive(show);
+            }
+        }
+
         if (!followMouse)
         {
             return;

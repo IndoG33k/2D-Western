@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 3941557814717699552}
   - component: {fileID: 8961528560971769796}
   - component: {fileID: -2026114090435649236}
-  - component: {fileID: 2957714543766288404}
-  m_Layer: 8
-  m_Name: Bullet
+  - component: {fileID: 2239946260205006266}
+  m_Layer: 9
+  m_Name: EnemyBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -86,7 +86,7 @@ SpriteRenderer:
   m_MaskInteraction: 0
   m_Sprite: {fileID: 2208703988740019828, guid: de7d2d7dd1f512142aa69a66d445892b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 0.34, y: 0.64}
@@ -167,7 +167,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &2957714543766288404
+--- !u!114 &2239946260205006266
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -176,14 +176,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 7570303352590733757}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db16f6f7aece0d64f89783a304610a29, type: 3}
+  m_Script: {fileID: 11500000, guid: b25623ce2788590429cd985c5ff2e8bf, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerBulletProjectile
-  normalSpeed: 18
-  deadeyeSpeedFactor: 0.25
-  maxLifetimeSeconds: 4
-  destroyWhenHitAnotherBullet: 1
-  hitDamage: 1
-  damageableLayers:
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyProjectile
+  speed: 16
+  maxLifetimeSeconds: 5
+  damage: 1
+  playerDamageLayers:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 64
