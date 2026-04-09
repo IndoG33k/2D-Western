@@ -102,6 +102,7 @@ public class PauseMenu : MonoBehaviour
 
         ShowPanel();
         Time.timeScale = 0f;
+        GameAudioManager.Instance?.PauseBattleMusic();
 
         if (showCursorWhenPaused)
         {
@@ -118,6 +119,7 @@ public class PauseMenu : MonoBehaviour
         IsPaused = false;
 
         Time.timeScale = 1f;
+        GameAudioManager.Instance?.ResumeBattleMusic();
         HidePanel();
 
         if (playerWeapon != null)
@@ -143,6 +145,8 @@ public class PauseMenu : MonoBehaviour
     public void QuitToMainMenu()
     {
         Time.timeScale = 1f;
+        RunProgression.Instance?.ResetRun();
+        GameAudioManager.Instance?.StopBattleMusic();
         SceneManager.LoadScene(mainMenuSceneName);
     }
 

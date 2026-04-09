@@ -6,8 +6,14 @@ using UnityEditor;
 
 public class MainMenu : MonoBehaviour
 {
+    private void Start()
+    {
+        GameAudioManager.Instance?.StopBattleMusic();
+    }
+
     public void PlayGame()
     {
+        RunProgression.Instance?.ResetRun();
         SceneManager.LoadScene("SampleScene");
     }
 

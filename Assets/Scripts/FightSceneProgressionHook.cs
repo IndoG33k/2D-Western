@@ -55,6 +55,9 @@ public class FightSceneProgressionHook : MonoBehaviour
 
         if (enemyAudioDriver != null && encounter.audioSetOverride != null)
             enemyAudioDriver.SetAudioSet(encounter.audioSetOverride);
+
+        bool forceMusic = GameAudioManager.Instance != null && GameAudioManager.Instance.ConsumeForceRestartBattleMusic();
+        GameAudioManager.Instance?.ApplyMusicForTier(encounter.tier, forceMusic);
     }
 
     private void OnEnemyDefeated()

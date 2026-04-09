@@ -137,6 +137,7 @@ public class ChamberReloadController : MonoBehaviour
         RefreshPrompts();
         RefreshSlotInteractable();
         PhaseChanged?.Invoke(_sessionPhase);
+        GameAudioManager.Instance?.PlayPlayerReloadStart();
         return true;
     }
 
@@ -158,6 +159,7 @@ public class ChamberReloadController : MonoBehaviour
         RefreshPrompts();
         RefreshSlotInteractable();
         PhaseChanged?.Invoke(_sessionPhase);
+        GameAudioManager.Instance?.PlayPlayerReloadEmptyChamber();
     }
 
     private void OnChamberButtonClicked(int index)
@@ -173,6 +175,7 @@ public class ChamberReloadController : MonoBehaviour
 
         _slotLoaded[index] = true;
         RefreshSlotVisual(index, true);
+        GameAudioManager.Instance?.PlayPlayerReloadLoadBullet();
     }
 
     private void FinishAndApplyAmmo()
@@ -181,6 +184,7 @@ public class ChamberReloadController : MonoBehaviour
 
         int count = CountLoadedSlots();
         weapon.ExitReloadModeWithAmmo(count);
+        GameAudioManager.Instance?.PlayPlayerReloadEnd();
         EndSessionPresentation();
     }
 

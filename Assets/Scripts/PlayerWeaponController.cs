@@ -183,11 +183,13 @@ public class PlayerWeaponController : MonoBehaviour, IReloadBlocker
             deadeye.ForceExitDeadeye();
         }
 
+        GameAudioManager.Instance?.PlayPlayerReloadStart();
         yield return new WaitForSecondsRealtime(2f);
 
         CurrentAmmo = maxAmmo;
         IsReloading = false;
         RaiseAmmoChanged();
+        GameAudioManager.Instance?.PlayPlayerReloadEnd();
     }
 
     public void EnterReloadMode()

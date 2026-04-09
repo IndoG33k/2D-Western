@@ -8,6 +8,9 @@ public class EnemyProjectile : MonoBehaviour
     [SerializeField] private int damage = 1;
     [SerializeField] private LayerMask playerDamageLayers;
 
+    [Header("Visual")]
+    [SerializeField] private float visualFacingAngleOffset;
+
     private Rigidbody2D _rb;
     private Vector2 _dir;
     private float _despawnAtTime;
@@ -28,7 +31,14 @@ public class EnemyProjectile : MonoBehaviour
         if (_dir.sqrMagnitude < 0.0001f)
             _dir = Vector2.right;
         _despawnAtTime = Time.time + maxLifetimeSeconds;
+        AlignRotationToDirection();
         _rb.linearVelocity = _dir * speed;
+    }
+
+    private void AlignRotationToDirection()
+    {
+        float z = Mathf.Atan2(_dir.y, _dir.x) * Mathf.Rad2Deg + visualFacingAngleOffset;
+        transform.rotation = Quaternion.Euler(0f, 0f, z);
     }
 
     private void Update()

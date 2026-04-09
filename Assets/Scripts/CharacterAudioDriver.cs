@@ -77,14 +77,9 @@ public class CharacterAudioDriver : MonoBehaviour
         PlayRandom(audioSet != null ? audioSet.deathClips : null);
     }
 
-    public void PlayReload()
-    {
-        PlayRandom(audioSet != null ? audioSet.reloadClips : null);
-    }
-
     public void PlayBulletClink()
     {
-        PlayRandom(audioSet != null ? audioSet.bulletClinkClips : null);
+        GameAudioManager.Instance?.PlayBulletClink();
     }
 
     private void PlayRandom(AudioClip[] clips)
@@ -104,4 +99,3 @@ public class CharacterAudioDriver : MonoBehaviour
         audioSource.PlayOneShot(clip);
     }
 }
-

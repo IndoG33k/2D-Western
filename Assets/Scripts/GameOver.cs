@@ -61,6 +61,8 @@ public class GameOver : MonoBehaviour
         if (pauseTimeOnGameOver)
             Time.timeScale = 0f;
 
+        GameAudioManager.Instance?.PauseBattleMusicForModal();
+
         if (showCursorOnGameOver)
         {
             Cursor.visible = true;
@@ -86,12 +88,15 @@ public class GameOver : MonoBehaviour
     public void RestartGame()
     {
         Time.timeScale = 1f;
+        GameAudioManager.Instance?.RequestForceRestartBattleMusic();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void QuitGame()
     {
+        Time.timeScale = 1f;
+        RunProgression.Instance?.ResetRun();
+        GameAudioManager.Instance?.StopBattleMusic();
         SceneManager.LoadScene("MainMenu");
-        
     }
 }

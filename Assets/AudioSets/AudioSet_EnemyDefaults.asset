@@ -12,8 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07c03a2715194ee4aafea135a9f6f371, type: 3}
   m_Name: AudioSet_EnemyDefaults
   m_EditorClassIdentifier: Assembly-CSharp::AudioSet
-  shootClips: []
-  hitClips: []
-  reloadClips: []
+  shootClips:
+  - {fileID: 8300000, guid: 28d0faf1c8c1996468a17a9af0c32dc1, type: 3}
+  - {fileID: 8300000, guid: ca30817e33089354fab4b3bceb636c99, type: 3}
+  - {fileID: 8300000, guid: b073d2dd5bdf6e945b23e658326f07ab, type: 3}
+  - {fileID: 8300000, guid: 9132f5b3a1f162442a48f7ad34ab73e4, type: 3}
+  - {fileID: 8300000, guid: be7811176903fd240aff200ff91c8b74, type: 3}
+  hitClips:
+  - {fileID: 8300000, guid: 80d003eccf2f2a34cbe58c8fcacbcff5, type: 3}
+  - {fileID: 8300000, guid: 1dd17a8b4c87ea8449139f942b5fb0ed, type: 3}
+  - {fileID: 8300000, guid: ac6f25561c430434a817d175ea4c8c14, type: 3}
   deathClips: []
-  bulletClinkClips: []
+  reloadStartClip: {fileID: 8300000, guid: fa890196248ec1447a85506e637f93ce, type: 3}
+  reloadEmptyChamberClip: {fileID: 8300000, guid: bd2d383aca8487d43aeda1530abad81a, type: 3}
+  reloadLoadBulletClip: {fileID: 8300000, guid: 50859dffb4d63e94fb89d11025757dda, type: 3}
+  reloadEndClip: {fileID: 8300000, guid: fa890196248ec1447a85506e637f93ce, type: 3}
+  deadeyeStartClip: {fileID: 8300000, guid: bde9612e504794d469d41930b4d88b0a, type: 3}
+  deadeyeEndClip: {fileID: 8300000, guid: 054788dad7c4be84e95c232209e268bf, type: 3}
+  menuClickClip: {fileID: 8300000, guid: 8b289926d65cc0b4892970d606d5a3cd, type: 3}
+  bulletClinkClips:
+  - {fileID: 8300000, guid: 59c86eee357b3654cb2c5472bb6a59a5, type: 3}
+  - {fileID: 8300000, guid: 3823e20e06e959c4a9aed8eca33755dc, type: 3}
+  - {fileID: 8300000, guid: 17cfc992ea2752145a82afa81d12abaa, type: 3}

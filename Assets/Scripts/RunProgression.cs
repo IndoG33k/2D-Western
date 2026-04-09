@@ -49,6 +49,7 @@ public class RunProgression : MonoBehaviour
     public void ResetRun()
     {
         encounterIndex = 0;
+        GameAudioManager.Instance?.ResetRunAudioState();
     }
 
     public bool TryAdvanceEncounter()

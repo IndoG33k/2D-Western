@@ -49,6 +49,8 @@ public class WinPanel : MonoBehaviour
         if (pauseTimeOnWin)
             Time.timeScale = 0f;
 
+        GameAudioManager.Instance?.PauseBattleMusicForModal();
+
         if (showCursorOnWin)
         {
             Cursor.visible = true;

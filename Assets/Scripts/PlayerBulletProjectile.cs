@@ -16,6 +16,10 @@ public class PlayerBulletProjectile : MonoBehaviour
     [SerializeField] private int hitDamage = 5;
     [SerializeField] private LayerMask damageableLayers;
 
+    [Header("Visual")]
+    [Tooltip("Degrees added if the sprite faces up (+Y) instead of right (+X). Typical: -90 when art points upward.")]
+    [SerializeField] private float visualFacingAngleOffset;
+
     private Rigidbody2D _rb;
     private Vector2 _dir;
     private bool _slowUntilDeadeyeEnds;
@@ -49,6 +53,7 @@ public class PlayerBulletProjectile : MonoBehaviour
         if (_slowUntilDeadeyeEnds && _deadeye != null)
             _deadeye.DeadeyeEnded += OnDeadeyeEnded;
 
+        AlignRotationToDirection();
         ApplyVelocity();
     }
 
@@ -77,6 +82,7 @@ public class PlayerBulletProjectile : MonoBehaviour
         var enemyProj = col.GetComponentInParent<EnemyProjectile>();
         if (enemyProj != null)
         {
+            GameAudioManager.Instance?.PlayBulletClink();
             Destroy(enemyProj.gameObject);
             Destroy(gameObject);
             return;
@@ -123,6 +129,12 @@ public class PlayerBulletProjectile : MonoBehaviour
             speed *= deadeyeSpeedFactor;
 
         _rb.linearVelocity = _dir * speed;
+    }
+
+    private void AlignRotationToDirection()
+    {
+        float z = Mathf.Atan2(_dir.y, _dir.x) * Mathf.Rad2Deg + visualFacingAngleOffset;
+        transform.rotation = Quaternion.Euler(0f, 0f, z);
     }
 
     private void OnDestroy()

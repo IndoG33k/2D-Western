@@ -490,18 +490,28 @@ public class AICombatController : MonoBehaviour
         if (!reloadToFullAlways && keepOneBulletInChamber && _ammo > 1)
             targetAmmo = magazineSize;
 
+        GameAudioManager.Instance?.PlayAiReloadStart();
+        GameAudioManager.Instance?.PlayAiReloadEmptyChamber();
+
+        bool diedMidReload = false;
         while (_ammo < targetAmmo)
         {
             if (health != null && !health.IsAlive)
+            {
+                diedMidReload = true;
                 break;
+            }
 
-            yield return new WaitForSeconds(reloadSecondsPerBullet);
+            yield return new WaitForSecondsRealtime(reloadSecondsPerBullet);
             _ammo = Mathf.Min(magazineSize, _ammo + 1);
+            GameAudioManager.Instance?.PlayAiReloadLoadBullet();
 
             if (!reloadToFullAlways && keepOneBulletInChamber && _ammo >= 1 && Random.value < 0.25f)
                 break;
         }
 
+        if (!diedMidReload)
+            GameAudioManager.Instance?.PlayAiReloadEnd();
         _isReloading = false;
     }
 
