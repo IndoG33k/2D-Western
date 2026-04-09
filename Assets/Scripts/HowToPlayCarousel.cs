@@ -1,23 +1,38 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class HowToPlayCarousel : MonoBehaviour
 {
+    [System.Serializable]
+    public class HowToPlaySlide
+    {
+        public Sprite image;
+
+        [TextArea(2, 6)]
+        public string tip;
+    }
+
     [Header("UI")]
     [SerializeField] private GameObject panelRoot;
     [SerializeField] private CanvasGroup canvasGroup;
     [SerializeField] private Image displayImage;
+    [SerializeField] private TMP_Text tipText;
     [SerializeField] private Button leftButton;
     [SerializeField] private Button rightButton;
 
     [Header("Slides")]
-    [SerializeField] private Sprite[] slides;
+    [SerializeField] private HowToPlaySlide[] slides;
     [SerializeField] private int startIndex;
 
     [Header("Behavior")]
     [SerializeField] private bool hideOnStart = true;
+    [SerializeField] private bool resetToFirstSlideOnClose = true;
+    [SerializeField] private bool hideTipWhenEmpty = true;
 
     private int _index;
+
+    private int SlideCount => slides?.Length ?? 0;
 
     private void Awake()
     {
@@ -27,7 +42,7 @@ public class HowToPlayCarousel : MonoBehaviour
         if (canvasGroup == null && panelRoot != null)
             canvasGroup = panelRoot.GetComponent<CanvasGroup>();
 
-        _index = Mathf.Clamp(startIndex, 0, Mathf.Max(0, (slides?.Length ?? 0) - 1));
+        _index = Mathf.Clamp(startIndex, 0, Mathf.Max(0, SlideCount - 1));
 
         if (hideOnStart)
             Hide();
@@ -71,9 +86,23 @@ public class HowToPlayCarousel : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Wire the Back button to this. Hides the tutorial overlay so the main menu underneath is usable again.
+    /// </summary>
+    public void CloseTutorial()
+    {
+        if (resetToFirstSlideOnClose)
+        {
+            int max = Mathf.Max(0, SlideCount - 1);
+            _index = Mathf.Clamp(startIndex, 0, max);
+        }
+
+        Hide();
+    }
+
     public void Next()
     {
-        int max = Mathf.Max(0, (slides?.Length ?? 0) - 1);
+        int max = Mathf.Max(0, SlideCount - 1);
         if (_index >= max)
         {
             Refresh();
@@ -98,14 +127,23 @@ public class HowToPlayCarousel : MonoBehaviour
 
     private void Refresh()
     {
-        int count = slides?.Length ?? 0;
+        int count = SlideCount;
         int max = Mathf.Max(0, count - 1);
         _index = Mathf.Clamp(_index, 0, max);
 
         if (displayImage != null)
         {
-            displayImage.sprite = count > 0 ? slides[_index] : null;
-            displayImage.enabled = displayImage.sprite != null;
+            Sprite s = count > 0 && slides[_index] != null ? slides[_index].image : null;
+            displayImage.sprite = s;
+            displayImage.enabled = s != null;
+        }
+
+        if (tipText != null)
+        {
+            string tip = count > 0 && slides[_index] != null ? slides[_index].tip : string.Empty;
+            tipText.text = tip ?? string.Empty;
+            if (hideTipWhenEmpty)
+                tipText.gameObject.SetActive(!string.IsNullOrEmpty(tip));
         }
 
         bool hasSlides = count > 0;
@@ -118,4 +156,3 @@ public class HowToPlayCarousel : MonoBehaviour
             rightButton.interactable = canGoRight;
     }
 }
-

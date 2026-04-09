@@ -197,7 +197,7 @@ public class AICombatController : MonoBehaviour
                 _deflectChanceDirect = 0.25f;
                 _deflectChanceOffTarget = 0.75f;
                 waitForPlayerShotProbability = 0f;
-                _bulletDamage = 1;
+                _bulletDamage = 0;
                 aimSpreadDegrees = 35f;
                 break;
         }
