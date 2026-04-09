@@ -299,8 +299,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Endless Draws
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 03e4cd7084e8b174aa7454ada1518f1d, type: 2}
-  m_sharedMaterial: {fileID: -2033336804917781680, guid: 03e4cd7084e8b174aa7454ada1518f1d, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -324,8 +324,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 100
-  m_fontSizeBase: 100
+  m_fontSize: 80
+  m_fontSizeBase: 80
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -436,8 +436,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: How to play ?
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 03e4cd7084e8b174aa7454ada1518f1d, type: 2}
-  m_sharedMaterial: {fileID: -2033336804917781680, guid: 03e4cd7084e8b174aa7454ada1518f1d, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -573,8 +573,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Start
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 03e4cd7084e8b174aa7454ada1518f1d, type: 2}
-  m_sharedMaterial: {fileID: -2033336804917781680, guid: 03e4cd7084e8b174aa7454ada1518f1d, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1875,39 +1875,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66e37bd27ecdf0041a7311a7eaa79063, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RunProgression
-  encounters:
-  - tier: 1
-    spriteOverride: {fileID: -8069711389629805090, guid: 397f947a47d96524c8445d353f6350e8, type: 3}
-    animatorControllerOverride: {fileID: 9100000, guid: e6af966e7c604b64e9ed632a8824a928, type: 2}
-    audioSetOverride: {fileID: 11400000, guid: 46fa7eb14bee88441950c28fd8128f05, type: 2}
-  - tier: 1
-    spriteOverride: {fileID: -8069711389629805090, guid: 397f947a47d96524c8445d353f6350e8, type: 3}
-    animatorControllerOverride: {fileID: 9100000, guid: e6af966e7c604b64e9ed632a8824a928, type: 2}
-    audioSetOverride: {fileID: 11400000, guid: 46fa7eb14bee88441950c28fd8128f05, type: 2}
-  - tier: 2
-    spriteOverride: {fileID: 8326076564152678837, guid: f387dd70a75e7e247bbbeb2f47edc571, type: 3}
-    animatorControllerOverride: {fileID: 9100000, guid: 46c72e043a7f314438fe7a837bb8f8c2, type: 2}
-    audioSetOverride: {fileID: 11400000, guid: 46fa7eb14bee88441950c28fd8128f05, type: 2}
-  - tier: 2
-    spriteOverride: {fileID: 8326076564152678837, guid: f387dd70a75e7e247bbbeb2f47edc571, type: 3}
-    animatorControllerOverride: {fileID: 9100000, guid: 46c72e043a7f314438fe7a837bb8f8c2, type: 2}
-    audioSetOverride: {fileID: 11400000, guid: 46fa7eb14bee88441950c28fd8128f05, type: 2}
-  - tier: 3
-    spriteOverride: {fileID: 0}
-    animatorControllerOverride: {fileID: 0}
-    audioSetOverride: {fileID: 11400000, guid: 46fa7eb14bee88441950c28fd8128f05, type: 2}
-  - tier: 3
-    spriteOverride: {fileID: 0}
-    animatorControllerOverride: {fileID: 0}
-    audioSetOverride: {fileID: 11400000, guid: 46fa7eb14bee88441950c28fd8128f05, type: 2}
-  - tier: 4
-    spriteOverride: {fileID: 0}
-    animatorControllerOverride: {fileID: 0}
-    audioSetOverride: {fileID: 11400000, guid: 46fa7eb14bee88441950c28fd8128f05, type: 2}
-  - tier: 4
-    spriteOverride: {fileID: 0}
-    animatorControllerOverride: {fileID: 0}
-    audioSetOverride: {fileID: 11400000, guid: 46fa7eb14bee88441950c28fd8128f05, type: 2}
+  encounters: []
   encounterIndex: 0
 --- !u!1 &1794683722
 GameObject:
@@ -1973,9 +1941,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HowToPlayCarousel
   panelRoot: {fileID: 1794683722}
   canvasGroup: {fileID: 1794683724}
-  displayImage: {fileID: 1324714343}
-  leftButton: {fileID: 1590614340}
-  rightButton: {fileID: 949891}
+  displayImage: {fileID: 0}
+  leftButton: {fileID: 0}
+  rightButton: {fileID: 0}
   slides:
   - {fileID: 0}
   - {fileID: 0}
@@ -2043,8 +2011,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 03e4cd7084e8b174aa7454ada1518f1d, type: 2}
-  m_sharedMaterial: {fileID: -2033336804917781680, guid: 03e4cd7084e8b174aa7454ada1518f1d, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

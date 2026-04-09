@@ -6,6 +6,10 @@ public class FightSceneProgressionHook : MonoBehaviour
     [Header("Enemy (the duel target)")]
     [SerializeField] private AICombatController enemyAI;
     [SerializeField] private Health enemyHealth;
+    [SerializeField] private SpriteRenderer enemySpriteRenderer;
+    [SerializeField] private Animator enemyAnimator;
+    [SerializeField] private CharacterAnimatorDriver enemyAnimatorDriver;
+    [SerializeField] private CharacterAudioDriver enemyAudioDriver;
 
     [Header("Win UI (shown after L4)")]
     [SerializeField] private WinPanel winPanel;
@@ -33,8 +37,24 @@ public class FightSceneProgressionHook : MonoBehaviour
 
     private void Start()
     {
-        if (enemyAI != null && RunProgression.Instance != null)
-            enemyAI.SetTier(RunProgression.Instance.CurrentTier, resetAmmo: true);
+        if (RunProgression.Instance == null)
+            return;
+
+        var encounter = RunProgression.Instance.CurrentEncounter;
+
+        if (enemyAI != null)
+            enemyAI.SetTier(encounter.tier, resetAmmo: true);
+
+        if (enemyAnimator != null && encounter.animatorControllerOverride != null)
+            enemyAnimator.runtimeAnimatorController = encounter.animatorControllerOverride;
+        if (enemyAnimatorDriver != null && encounter.animatorControllerOverride != null)
+            enemyAnimatorDriver.SetRuntimeController(encounter.animatorControllerOverride);
+
+        if (enemySpriteRenderer != null && encounter.spriteOverride != null)
+            enemySpriteRenderer.sprite = encounter.spriteOverride;
+
+        if (enemyAudioDriver != null && encounter.audioSetOverride != null)
+            enemyAudioDriver.SetAudioSet(encounter.audioSetOverride);
     }
 
     private void OnEnemyDefeated()
@@ -42,7 +62,7 @@ public class FightSceneProgressionHook : MonoBehaviour
         if (RunProgression.Instance == null)
             return;
 
-        bool advanced = RunProgression.Instance.TryAdvanceTier();
+        bool advanced = RunProgression.Instance.TryAdvanceEncounter();
         if (advanced)
         {
             Time.timeScale = 1f;

@@ -1,5 +1,7 @@
 using System.Collections;
+using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class AICombatController : MonoBehaviour
 {
@@ -51,6 +53,7 @@ public class AICombatController : MonoBehaviour
     private float _lastMeaningfulActionTime;
 
     public AITier Tier => tier;
+    public event Action ShotFired;
 
     public void SetTier(AITier newTier, bool resetAmmo)
     {
@@ -561,6 +564,7 @@ public class AICombatController : MonoBehaviour
             proj.SetDamage(_bulletDamage);
             proj.Launch(dir);
         }
+        ShotFired?.Invoke();
         return true;
     }
 
@@ -575,5 +579,6 @@ public class AICombatController : MonoBehaviour
             proj.SetDamage(_bulletDamage);
             proj.Launch(direction);
         }
+        ShotFired?.Invoke();
     }
 }
